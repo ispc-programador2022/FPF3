@@ -18,3 +18,10 @@ El proyecto llevado a cabo se basa en la extracción de datos correspondientes a
 
 
 Pagina utilizada para el web scraping: https://datosmacro.expansion.com/demografia/indice-felicidad
+
+
+<h2>Tablero de trabajo en Trello</h2>
+
+<a href="https://trello.com/b/AIyzyE4v/proyecto-integrador">
+Enlace al tablero
+</a>
