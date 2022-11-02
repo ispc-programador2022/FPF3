@@ -38,3 +38,5 @@ df.to_csv('Tabla_indicefelicidad.csv', index =False, sep =';')
 
 for cadaPais in enlaces:
   print('www.pagina.com/seccion' + cadaPais)
+
+  df[(df.paises .isin(["Argentina [+]" , "Uruguay [+]"]))]
