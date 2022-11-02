@@ -4,7 +4,7 @@ Proyecto Integrador 2022 - Proyecto Gama
 
 <h2>Integrantes</h2>
 
-<p>- Ferreira Silvia</p>
+<p>- Ferreyra Silvia</p>
 <p>- Figueroa Gisela</p>
 <p>- Parada Gonzalo</p>
 
