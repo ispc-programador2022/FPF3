@@ -79,106 +79,115 @@ df.to_csv('Tabla_indicefelicidad.csv', index =False, sep =';', encoding='latin1'
 
 #  df[(df.paises .isin(["Argentina [+]" , "Uruguay [+]"]))]
 
-paisABuscar = input("Ingrese un país para obtener el promedio del indice de felicidad en los ultimos diez años: ")
-encontrado = False
-for x in range(len(df)):
-  # print(paisFinal, " -  - - ", dfContinentes.iloc[x, 0])
-  if paisABuscar.upper() == (df.iloc[x, 0]).upper():
-    enlaceABuscar = "https://datosmacro.expansion.com" + (df.iloc[x, 5])
-    encontrado = True
-    print(enlaceABuscar)
+print("Bienvenido al mundo de la felicidad!")
+print("Opciones disponibles: ")
+print("1 - Consultar indice de felicidad de un país en los últimos 10 años.")
+print("2 - Consultar índices por continentes.")
+print("0 - Salir")
+opcion = int(input("Ingrese el número correspondiente según la opción que desee:"))
 
-if encontrado:
-  # BUSCAR DATOS EN LA NUEVA PAGINA
-  result2 = requests.get(enlaceABuscar)
-  content2 = result2.text
-  soup2 = BeautifulSoup(result2.content, 'html.parser')
+if opcion == 1:
 
-  contenedorPais = soup2.select('tbody')
-  listaDatosPorPais = []
+  paisABuscar = input("Ingrese un país para obtener el promedio del indice de felicidad en los ultimos diez años: ")
+  encontrado = False
+  for x in range(len(df)):
+    # print(paisFinal, " -  - - ", dfContinentes.iloc[x, 0])
+    if paisABuscar.upper() == (df.iloc[x, 0]).upper():
+      enlaceABuscar = "https://datosmacro.expansion.com" + (df.iloc[x, 5])
+      encontrado = True
+      #print(enlaceABuscar)
 
-  for fila in contenedorPais[0].find_all("tr"):
-    for col in fila.find_all("td"):
-      listaDatosPorPais.append(col.get_text().strip())
+  if encontrado:
+    # BUSCAR DATOS EN LA NUEVA PAGINA
+    result2 = requests.get(enlaceABuscar)
+    content2 = result2.text
+    soup2 = BeautifulSoup(result2.content, 'html.parser')
 
-  contenedorPais = soup2.select('tbody')
-  listaDos = []
-  listaIndices = []
+    contenedorPais = soup2.select('tbody')
+    listaDatosPorPais = []
 
-#RECORRO AL REVES EL FOR PARA OBTENER DE AÑO MAS VIEJO A MAS NUEVO
-  for fila in contenedorPais[::-1]:
-    mifila = fila.find_all("tr")
+    for fila in contenedorPais[0].find_all("tr"):
+      for col in fila.find_all("td"):
+        listaDatosPorPais.append(col.get_text().strip())
 
-    for colu in mifila:
-      coluAnio = colu.find_all("td")[0]
-      listaDos.append(coluAnio.get_text().strip())
-      coluIndice = colu.find_all("td")[2]
-      listaIndices.append(coluIndice.get_text().strip())
+    contenedorPais = soup2.select('tbody')
+    listaAnios = []
+    listaIndices = []
 
-  #print(listaDos)
-  #print(listaIndices)
+  #RECORRO AL REVES EL FOR PARA OBTENER DE AÑO MAS VIEJO A MAS NUEVO
+    for fila in contenedorPais[::-1]:
+      mifila = fila.find_all("tr")
+
+      for colu in mifila:
+        coluAnio = colu.find_all("td")[0]
+        listaAnios.append(int(coluAnio.get_text().strip()))
+        coluIndice = colu.find_all("td")[2]
+        coluIndice = coluIndice.get_text().strip()
+        coluIndice = coluIndice.replace(",", ".")
+        listaIndices.append(float(coluIndice))
+
+
+    fig, ax = plt.subplots()
+
+    ax.plot(listaAnios, listaIndices, color="red")
+    plt.suptitle(paisABuscar.upper())
+    plt.title("Felicidad en los últimos diez años")
+    plt.xticks(rotation=90)
+    plt.show()
+
+  else:
+    print("El pais ingresado no ha sido encontrado en nuestra base de datos.")
+
+elif opcion == 2:
+  print("CONTINENTES PARA ANALIZAR: ")
+  print("")
+  print("1 - AFRICA")
+  print("2 - AMERICA")
+  print("3 - ASIA")
+  print("4 - EUROPA")
+  print("5 - OCEANIA")
+
+  opcionContinente = int(input("Ingrese el número con la opción deseada."))
+
+  if opcionContinente == 1:
+    continenteElegido = 'ÁFRICA'
+  elif opcionContinente == 2:
+    continenteElegido = 'AMÉRICA'
+  elif opcionContinente == 3:
+    continenteElegido = 'ASIA'
+  elif opcionContinente == 4:
+    continenteElegido = 'EUROPA'
+  elif opcionContinente == 5:
+    continenteElegido = 'AUSTRALIA Y OCEANÍA'
+
+  listaNombrePais = []
+  listaIndicePais = []
+
+  for x in range(60):
+  #for x in range(len(df)):
+      if df.iloc[x, 4] == continenteElegido:
+        listaNombrePais.append((df.iloc[x, 0]))
+        listaIndicePais.append(float((df.iloc[x, 2])))
 
   fig, ax = plt.subplots()
+  #Colocamos una etiqueta en el eje Y
+  ax.set_ylabel('Paises')
+  #Colocamos una etiqueta en el eje X
+  ax.set_title('Indices')
+  #Creamos la grafica de barras utilizando 'paises' como eje X y 'ventas' como eje y.
+  plt.bar(listaNombrePais, listaIndicePais, color="green")
+  plt.savefig('barras_simple.png')
 
-
-  ax.plot(listaDos, listaIndices)
-  plt.suptitle(paisABuscar.upper())
-  plt.title("Felicidad en los últimos diez años")
+  plt.suptitle(continenteElegido)
+  plt.title("Indice de felicidad en paises de " + continenteElegido)
+  plt.xticks(rotation=90)
+  #Finalmente mostramos la grafica con el metodo show()
   plt.show()
 
+  #ejes.bar(listaNombrePais, listaIndicePais)
 
 else:
-  print("El pais ingresado no ha sido encontrado en nuestra base de datos.")
-
-
-
-print("CONTINENTES PARA ANALIZAR: ")
-print("")
-print("1 - AFRICA")
-print("2 - AMERICA")
-print("3 - ASIA")
-print("4 - EUROPA")
-print("5 - OCEANIA")
-
-opcionContinente = int(input("Ingrese el número con la opción deseada."))
-
-if opcionContinente == 1:
-  continenteElegido = 'ÁFRICA'
-elif opcionContinente == 2:
-  continenteElegido = 'AMÉRICA'
-elif opcionContinente == 3:
-  continenteElegido = 'ASIA'
-elif opcionContinente == 4:
-  continenteElegido = 'EUROPA'
-elif opcionContinente == 5:
-  continenteElegido = 'AUSTRALIA Y OCEANÍA'
-
-listaNombrePais = []
-listaIndicePais = []
-
-for x in range(60):
-#for x in range(len(df)):
-    if df.iloc[x, 4] == continenteElegido:
-      listaNombrePais.append((df.iloc[x, 0]))
-      listaIndicePais.append((df.iloc[x, 2]))
-
-fig, ax = plt.subplots()
-#Colocamos una etiqueta en el eje Y
-ax.set_ylabel('Paises')
-#Colocamos una etiqueta en el eje X
-ax.set_title('Indices')
-#Creamos la grafica de barras utilizando 'paises' como eje X y 'ventas' como eje y.
-plt.bar(listaNombrePais, listaIndicePais)
-plt.savefig('barras_simple.png')
-
-plt.suptitle(continenteElegido)
-plt.title("Indice de felicidad en paises de " + continenteElegido)
-
-#Finalmente mostramos la grafica con el metodo show()
-plt.show()
-
-#ejes.bar(listaNombrePais, listaIndicePais)
-
+  print("Opción no disponible. Nos vemos en otro momento...")
 
 
 
