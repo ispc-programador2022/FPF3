@@ -1,6 +1,6 @@
 <h1>FPF3</h1>
 
-Proyecto Integrador 2022 - Proyecto Gama
+Proyecto Integrador 2022 - Proyecto Alfa
 
 <h2>Integrantes</h2>
 
