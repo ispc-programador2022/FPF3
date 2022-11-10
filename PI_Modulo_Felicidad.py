@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+from datetime import datetime
 
 def menuPrincipal():
   print("\n")
@@ -26,7 +27,6 @@ def menuContinentes():
   print("0 - Cancelar")
   print("\n \n")
   return (input("Ingrese el continente elegido: "))
-
 def crearGraficoContinentes(continenteElegido, paises, indices):
     fig, ax = plt.subplots()
     # Colocamos una etiqueta en el eje Y
@@ -35,11 +35,17 @@ def crearGraficoContinentes(continenteElegido, paises, indices):
     ax.set_title('Indices')
     # Creamos la grafica de barras utilizando 'paises' como eje X y 'ventas' como eje y.
     plt.bar(paises, indices, color="green")
-    plt.savefig('barras_simple.png')
 
     plt.suptitle(continenteElegido)
     plt.title("Indice de felicidad en paises de " + continenteElegido)
     plt.xticks(rotation=90)
+
+    hora = str(datetime.now())
+    hora = hora.replace('.', ' ')
+    hora = hora.replace(':', ' ')
+    guardarComo = f"Grafico {continenteElegido} {hora}.jpg"
+
+    plt.savefig(guardarComo)
     # Finalmente mostramos la grafica con el metodo show()
     plt.show()
 
@@ -52,4 +58,12 @@ def crearGraficoPaises(pais, Anios, Indices):
   plt.suptitle(pais.upper())
   plt.title("Felicidad en los últimos diez años")
   plt.xticks(rotation=90)
+
+  hora = str(datetime.now())
+  hora = hora.replace('.', ' ')
+  hora = hora.replace(':', ' ')
+  guardarComo = f"Grafico {pais} {hora}.jpg"
+
+  plt.savefig(guardarComo)
+
   plt.show()
