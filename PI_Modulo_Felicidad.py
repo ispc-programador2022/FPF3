@@ -27,17 +27,20 @@ def menuContinentes():
   print("0 - Cancelar")
   print("\n \n")
   return (input("Ingrese el continente elegido: "))
-def crearGraficoContinentes(continenteElegido, paises, indices):
-    fig, ax = plt.subplots()
-    # Colocamos una etiqueta en el eje Y
-    ax.set_ylabel('Paises')
-    # Colocamos una etiqueta en el eje X
-    ax.set_title('Indices')
-    # Creamos la grafica de barras utilizando 'paises' como eje X y 'ventas' como eje y.
-    plt.bar(paises, indices, color="green")
 
-    plt.suptitle(continenteElegido)
-    plt.title("Indice de felicidad en paises de " + continenteElegido)
+def crearGraficoContinentes(continenteElegido, paises, indices):
+    figura1, ejes = plt.subplots()
+    # Colocamos una etiqueta en el eje Y
+    ejes.set_ylabel("Indices de felicidad", fontdict={'fontsize': 14, 'fontweight': 'bold'})
+    ejes.set_xlabel("Paises", fontdict={'fontsize': 14, 'fontweight': 'bold'})
+
+    # Creamos la grafica de barras utilizando 'paises' como eje X y 'ventas' como eje y.
+    plt.bar(paises, indices, color="green", width=0.25)
+
+    ejes.grid(axis='y', color='gray', linestyle='dashed')
+    #Agrega color al fondo del grafico
+    #ejes.set_facecolor('y')
+    plt.title("Indice de felicidad en paises de " + continenteElegido, fontdict = {'fontsize':20, 'fontweight':'bold', 'color':'tab:blue'})
     plt.xticks(rotation=90)
 
     hora = str(datetime.now())
@@ -45,24 +48,31 @@ def crearGraficoContinentes(continenteElegido, paises, indices):
     hora = hora.replace(':', ' ')
     guardarComo = f"Grafico {continenteElegido} {hora}.jpg"
 
+
     plt.savefig(guardarComo)
+
     # Finalmente mostramos la grafica con el metodo show()
     plt.show()
 
     # ejes.bar(listaNombrePais, listaIndicePais)
 
 def crearGraficoPaises(pais, Anios, Indices):
-  fig, ax = plt.subplots()
+  figura2, ejes2 = plt.subplots()
 
-  ax.plot(Anios, Indices, color="red")
-  plt.suptitle(pais.upper())
-  plt.title("Felicidad en los últimos diez años")
+  ejes2.plot(Anios, Indices, color="red", marker = 'o')
+  plt.title("Felicidad en los últimos diez años en " + pais.upper(), fontdict = {'fontsize':20, 'fontweight':'bold', 'color':'tab:blue'})
   plt.xticks(rotation=90)
+
+  ejes2.set_ylabel("Índices de felicidad", fontdict = {'fontsize':14, 'fontweight':'bold'})
+  ejes2.set_xlabel("Años", fontdict = {'fontsize':14, 'fontweight':'bold'})
+  ejes2.set_xticks(Anios)
+  ejes2.grid(axis='both', color='gray', linestyle='dashed')
 
   hora = str(datetime.now())
   hora = hora.replace('.', ' ')
   hora = hora.replace(':', ' ')
   guardarComo = f"Grafico {pais} {hora}.jpg"
+
 
   plt.savefig(guardarComo)
 
