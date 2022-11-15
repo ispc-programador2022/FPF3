@@ -51,12 +51,11 @@ for tabla in tabla:
 
   enlaces.append(tabla.a.get('href'))
 
-df = pd.DataFrame({'paises': paises, 'ranking': ranking, 'indice': indice, 'var': var, 'enlace': enlaces})
-df.to_csv('Tabla_indicefelicidad.csv', index =False, sep =';')
-print(df)
+df = pd.DataFrame({'paises': paises, 'ranking': ranking, 'indice': indice, 'var': var})
 
+#ordenar los valores para observar los primeros puestos.
+lista_orden= df.sort_values(by=['indice'], ascending=False)
+#print(lista_orden)
 
-#for cadaPais in enlaces:
-#  print('www.pagina.com/seccion' + cadaPais)
-
-#  df[(df.paises .isin(["Argentina [+]" , "Uruguay [+]"]))]
+lista_orden.to_csv('Tabla_indicefelicidad.csv', index =False, sep =';')
+print(lista_orden)
