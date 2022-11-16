@@ -53,11 +53,14 @@ for tabla in tabla:
 
   #Lleno DF
   df.iloc[posicionLlenado] = (paisFinal, ranking, indice, var, nombreContinente, enlaces)
-
+  lista_orden= df.sort_values(by=['indice'], ascending=False)
+  #print(lista_orden)
+  lista_orden.to_csv('Tabla_indicefelicidad.csv', index =False, sep =';')
+  #print(lista_orden)
   #Se incrementa la posicion, para que en la proxima iteracion del FOR llene la siguiente fila.
   posicionLlenado += 1
 
-df.to_csv('Tabla_indicefelicidad.csv', index =False, sep =';', encoding='latin1')
+  lista_orden.to_csv('Tabla_indicefelicidad.csv', index =False, sep =';', encoding='latin1')
 
 opcion = menuPrincipal()
 
