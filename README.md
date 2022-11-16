@@ -37,6 +37,8 @@ Pagina utilizada para el web scraping: https://datosmacro.expansion.com/demograf
 <p>- BeautifulSoup</p>
 <p>- Pandas</p>
 <p>- MatplotLib</p>
+<p>- Requests</p>
+<p>- csv</p>
 
 
 <h2>Tablero de trabajo en Trello</h2>
