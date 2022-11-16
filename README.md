@@ -46,3 +46,24 @@ Pagina utilizada para el web scraping: https://datosmacro.expansion.com/demograf
 <a href="https://trello.com/b/AIyzyE4v/proyecto-integrador">
 Enlace al tablero
 </a>
+
+<h2>Aclaración para realizar ejecución!</h2>
+
+Dejar en una misma carpeta estos tres archivos: 
+<p>- PI_Modulo_Felicidad.py</p>
+<p>- PI_Felicidad.py</p>
+<p>- paises.csv</p>
+
+<h2>Prueba 2, opcional!</h2>
+
+Dejar en una misma carpeta estos tres archivos: 
+<p>- PI_Felicidad_ConMySQL_PrimerScraping</p>
+<p>- PI_Felicidad.py</p>
+<p>- PI_Felicidad_ConMySQL.py</p>
+<p>- paises.csv</p>
+
+En este segundo método, ejecutar primero "PI_Felicidad_ConMySQL_PrimerScraping".
+Luego trabajar con "PI_Felicidad_ConMySQL.py" para el análisis.
+Crear previamente la base de datos adjunta en el script.
+
+
