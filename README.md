@@ -25,10 +25,14 @@ Para llevar a cabo esta extracción, se trabaja sobre la página "principal", en
 
 Como idea principal surge segmentar los datos por continentes, sorteando el primer inconveniente que se presenta: los países no tienen asociado ningun continente. Es por esto que se importa un archivo .csv, mediante el cual se analiza automaticamente su estructura y se le añaden los datos correspondientes a nuestro dataframe o base de datos. Ya con todos estos datos, se elabora un gráfico en el que se observan los índices segmentados por continente.
 
+![image](https://user-images.githubusercontent.com/100076710/202066211-5d17cd3c-6971-45b3-a697-0999156022c9.png)
+
+
 <h4>Segunda idea</h4>
 
 La segunda idea es realizar un gráfico que muestre la variación del índice de felicidad de cada país, de manera individual, en el período comprendido por los últimos diez años. Para esto, el usuario ingresará el nombre de un país, que será filtrado de la base de datos, y en ese mismo instante se direccionará a la página correspondiente para hacer el segundo WebScraping. En esta etapa se recolectan los datos necesarios para elaborar un gráfico lineal, ordenado de la fecha más antigua a la fecha actual.
 
+![image](https://user-images.githubusercontent.com/100076710/202066259-0019ba47-0ae0-420b-ab69-76a768d9e710.png)
 
 Pagina utilizada para el web scraping: https://datosmacro.expansion.com/demografia/indice-felicidad
 
@@ -66,4 +70,4 @@ En este segundo método, ejecutar primero "PI_Felicidad_ConMySQL_PrimerScraping"
 Luego trabajar con "PI_Felicidad_ConMySQL.py" para el análisis.
 Crear previamente la base de datos adjunta en el script.
 
-
+* No se muestra la totalidad de países porque solo se analizaron 60 (fué para agilizar el análisis y no se modificó sobre la hora de entrega por temor a que no funcione el código)
