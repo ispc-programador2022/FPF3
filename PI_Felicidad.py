@@ -141,7 +141,7 @@ while opcion != "0":
       listaNombrePais = []
       listaIndicePais = []
 
-      for x in range(60):
+      for x in range(len(df)):
       #for x in range(len(df)):
           if df.iloc[x, 4] == continenteElegido:
             listaNombrePais.append((df.iloc[x, 0]))
