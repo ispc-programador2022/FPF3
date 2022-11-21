@@ -71,3 +71,9 @@ Luego trabajar con "PI_Felicidad_ConMySQL.py" para el análisis.
 Crear previamente la base de datos adjunta en el script.
 
 * No se muestra la totalidad de países porque solo se analizaron 60 (fué para agilizar el análisis y no se modificó sobre la hora de entrega por temor a que no funcione el código)
+
+<h4>Tercera idea</h4>
+
+Realizar junto con un archivo .csv ya extraido de una pagina web, el analisis de datos desde Power Bi. Para una mejor observacion y puesta de los datos en comparacion.
+
+
